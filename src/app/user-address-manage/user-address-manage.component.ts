@@ -1,6 +1,7 @@
+///<reference path="../../../node_modules/rxjs/Observable.d.ts"/>
 
 
-import { Component, OnInit } from '@angular/core';
+import {Component, Output, OnInit, EventEmitter} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreModule} from "angularfire2/firestore";
 import { Observable } from 'rxjs/Observable';
 
@@ -26,13 +27,7 @@ interface userActivity {
 
 export class UserAddressManageComponent implements OnInit {
 
-  static test = [10, 20, 30];
-
-  static showTest(){
-    alert(this.test);
-  }
-
-  userName: string = "";
+  userName: string = "Jing";
   arrival: string = "";
   departure: string = "";
   role: string = "";
@@ -45,8 +40,16 @@ export class UserAddressManageComponent implements OnInit {
   userActivityCollection: AngularFirestoreCollection<userActivity>;
   userActivities: Observable<userActivity[]>;
 
-  add(){
+  // messages gonna be sent
+  addresses: Array<string>;
 
+  @Output() messageEvent = new EventEmitter<Array<String>>();
+
+  sendMessage(){
+    this.messageEvent.emit(this.addresses);
+  }
+
+  add(){
     this.userActivityCollection.doc(this.userName).set({
       userName: this.userName,
       arrival: this.arrival,
@@ -59,14 +62,17 @@ export class UserAddressManageComponent implements OnInit {
     }).catch((err)=>{
       // alert(err);
       console.log(err);
-    })
-  };
+    });
+  }
 
   constructor(private db: AngularFirestore) { }
 
   ngOnInit() {
     this.userActivityCollection = this.db.collection("userActivityCollection");
     this.userActivities = this.userActivityCollection.valueChanges();
+    let res = this.userActivities.forEach(x => {
+      this.addresses = x.map(r => r.address);
+    });
   }
 
 }
