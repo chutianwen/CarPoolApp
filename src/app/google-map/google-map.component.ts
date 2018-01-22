@@ -1,8 +1,7 @@
 import { Component, OnInit} from '@angular/core';
-import {google} from "@agm/core/services/google-maps-types";
 import { MouseEvent } from '@agm/core';
+import {geocode} from 'google-geocoding/index.js'
 
-// just an interface for type safety.
 class marker {
   lat: number = 0;
   lng: number = 0;
@@ -20,6 +19,7 @@ class marker {
 
 export class GoogleMapComponent implements OnInit {
 
+  // Metrics of initializing Map Display
   title: string = 'Car Pool Map';
 
   zoom: number = 8;
@@ -35,26 +35,22 @@ export class GoogleMapComponent implements OnInit {
     });
   }
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   // receive by child component user-address-manage.component
   addresses: Array<string>;
 
   markers: marker[];
+
+  // function from google-geocoding/index.js
+  google_geocoding = geocode;
 
   receiveMessage($event){
     this.addresses = $event;
     this.markers = this.addresses.map(x => this.addressToLongLat(x));
   }
 
-  google_geocoding = require('google-geocoding');
-
   addressToLongLat(address:string): marker{
     let res = new marker(0, 0);
-    this.google_geocoding.geocode(address, function (err, location) {
+    this.google_geocoding(address, function (err, location) {
       if (err) {
         // console.log('Error: ' + err);
       } else if (!location) {
@@ -68,10 +64,20 @@ export class GoogleMapComponent implements OnInit {
     return res;
   }
 
+  /**
+   * For debugging
+   */
   showAddresses(){
+    console.log(this.google_geocoding);
+
     console.log("showing addresses:");
     console.log(this.addresses);
     console.log("showing markers");
     console.log(this.markers);
+  }
+
+  constructor() { }
+
+  ngOnInit() {
   }
 }
