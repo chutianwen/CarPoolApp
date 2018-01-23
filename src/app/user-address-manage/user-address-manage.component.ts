@@ -4,8 +4,8 @@ import {AngularFirestore, AngularFirestoreCollection} from "angularfire2/firesto
 import {Observable} from 'rxjs/Observable';
 import {MapsAPILoader} from "@agm/core";
 import {FormControl} from "@angular/forms";
-
 // this is very necessary, otherwise namespace 'google' cannot be found.
+import {} from '@types/googlemaps'
 
 interface userActivity {
   // fields from input documents
