@@ -16,7 +16,7 @@
     <td>{{userActivity.userName}}</td>
     <td>{{userActivity.arrival}}</td>
     <td>{{userActivity.departure}}</td>
-    <td>{{userActivity.driver}}</td>
+    <td>{{userActivity.role}}</td>
     <td>{{userActivity.address}}</td>
     <td>{{userActivity.zipCode}}</td>
     <td>{{userActivity.price}}</td>
@@ -33,12 +33,20 @@
     </div>
     <div class="large-4 columns">
       <!-- Time to reach office -->
-      <label>Arrival</label><input [(ngModel)]="arrival" name="arrival" type="text" placeholder="9:00 A.M."/>
+      <label>Arrival</label>
+      <owl-date-time #dt></owl-date-time>
+      <input [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="arrival" name="arrival" type="text" placeholder="9:00 A.M."/>
+
+      <!--<input [(ngModel)]="arrival" name="arrival" type="text" placeholder="9:00 A.M."/>-->
     </div>
     <div class="large-4 columns">
       <!-- Time to leave office -->
-      <label>Departure</label><input [(ngModel)]="departure" name="departure" type="text" placeholder="5:00 P.M."/>
+      <label>Departure</label>
+      <owl-date-time #dt2></owl-date-time>
+      <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [(ngModel)]="departure" name="departure" type="text" placeholder="5:00 P.M."/>
     </div>
+
+
   </div>
 
   <div class="row">
@@ -76,6 +84,8 @@
 </form>
 
 <button (click)="sendMessage()" class="button">Display Addresses</button>
+
+
 
 <script type="text/javascript"
         src="https://maps.google.com/maps/api/js?sensor=true&key=AIzaSyARZV20YYnYyyW-sUc0WorytUkX49-CwH8&libraries=places&language=en-US"></script>

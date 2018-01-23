@@ -12,6 +12,8 @@ import {AngularFirestoreModule} from "angularfire2/firestore";
 import {AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {Ng4GeoautocompleteModule} from "ng4-geoautocomplete";
+import {OwlDateTimeModule, OwlNativeDateTimeModule} from "ng-pick-datetime";
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBqvRd9oGomx7YejW1NwCMsAHpGqZmRaiQ",
@@ -37,7 +39,11 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     Ng4GeoautocompleteModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ],
   providers: [],
   declarations: [AppComponent, GoogleMapComponent, UserAddressManageComponent],

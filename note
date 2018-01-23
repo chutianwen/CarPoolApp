@@ -1,0 +1,2 @@
+npm install ng-pick-datetime --save
+npm install @angular/animations --save
