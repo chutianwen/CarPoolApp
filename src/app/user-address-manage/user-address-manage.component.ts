@@ -1,8 +1,11 @@
 ///<reference path="../../../node_modules/rxjs/Observable.d.ts"/>
-import {Component, Output, OnInit, EventEmitter} from '@angular/core';
+import {Component, Output, OnInit, EventEmitter, NgZone, ElementRef, ViewChild} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreModule} from "angularfire2/firestore";
 import { Observable } from 'rxjs/Observable';
 import {MapsAPILoader} from "@agm/core";
+import {AngularFireDatabase} from "angularfire2/database";
+import {FormControl} from "@angular/forms";
+import {} from '@types/googlemaps';
 
 interface userActivity {
   // fields from input documents
@@ -41,6 +44,11 @@ export class UserAddressManageComponent implements OnInit {
   zipCode: string = "";
   price: number = 0;
   memo: string = "";
+
+  public searchControl: FormControl;
+
+  @ViewChild("search")
+  public searchElementRef:ElementRef;
 
   // collection from fire base
   userActivityCollection: AngularFirestoreCollection<userActivity>;
@@ -84,20 +92,39 @@ export class UserAddressManageComponent implements OnInit {
     });
   }
 
-  constructor(private db: AngularFirestore) {
-  }
-
-  ngOnInit() {
-    this.userActivityCollection = this.db.collection("userActivityCollection");
+  constructor(private db: AngularFirestore, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
+    this.userActivityCollection = db.collection("userActivityCollection");
     this.userActivities = this.userActivityCollection.valueChanges();
     let res = this.userActivities.forEach(x => {
       this.userAddressDataMessageSent = x.map(doc => {
         return new messageToMapComponent(doc.userName, doc.address);
       });
-      alert("DDD");
-      this.sendMessage();
     });
     res.catch(reject => console.log(reject));
+  }
+
+  ngOnInit() {
+    //create search FormControl
+    this.searchControl = new FormControl();
+
+    //load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          //get the place result
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          //verify result
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+          this.address = place.name;
+        });
+      });
+    });
   }
 }
 

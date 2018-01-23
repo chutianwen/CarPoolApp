@@ -3,14 +3,7 @@ import {geocode} from 'google-geocoding/index.js'
 import {messageToMapComponent} from "../user-address-manage/user-address-manage.component";
 
 class marker {
-  userName: string = "";
-  lat: number = 0;
-  lng: number = 0;
-  constructor(userName, lat, lng){
-    this.userName = userName;
-    this.lat = lat;
-    this.lng = lng;
-  }
+  constructor(public userName:string = "", public lat:number = 0, public lng:number =0){}
 }
 
 @Component({
