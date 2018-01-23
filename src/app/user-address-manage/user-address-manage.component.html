@@ -1,4 +1,3 @@
-
 <table>
   <thead>
   <tr>
@@ -30,15 +29,15 @@
   <div class="row">
     <div class="large-4 columns">
       <label>Name</label>
-      <input type="text" [(ngModel)]="userName" name="name" placeholder="Your full name no space" />
+      <input type="text" [(ngModel)]="userName" name="name" placeholder="Your full name no space"/>
     </div>
     <div class="large-4 columns">
       <!-- Time to reach office -->
-      <label>Arrival</label><input [(ngModel)]="arrival" name="arrival" type="text" placeholder="9:00 A.M." />
+      <label>Arrival</label><input [(ngModel)]="arrival" name="arrival" type="text" placeholder="9:00 A.M."/>
     </div>
     <div class="large-4 columns">
       <!-- Time to leave office -->
-      <label>Departure</label><input [(ngModel)]="departure" name="departure" type="text" placeholder="5:00 P.M." />
+      <label>Departure</label><input [(ngModel)]="departure" name="departure" type="text" placeholder="5:00 P.M."/>
     </div>
   </div>
 
@@ -53,21 +52,22 @@
     </div>
 
     <div class="large-4 columns">
-      <label>Trip Fare</label><input [(ngModel)]="price" name="price" type="number" placeholder="Trip Fare" />
+      <label>Trip Fare</label><input [(ngModel)]="price" name="price" type="number" placeholder="Trip Fare"/>
     </div>
 
     <div class="large-4 columns">
       <label>Address</label>
       <!--<ng4geo-autocomplete [userSettings]="userSettings" (componentCallback)="autoCompleteCallback($event)"></ng4geo-autocomplete>-->
       <!--<input [(ngModel)]="address" name="address" type="text" />-->
-      <input placeholder="search for location" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+      <input placeholder="search for location" spellcheck="off" type="text" class="form-control" #search
+             [formControl]="searchControl">
     </div>
   </div>
 
   <div class="row">
     <div class="large-12 columns">
-      <label>Comment      </label>
-      <input [(ngModel)]="memo" name="memo" type="text" placeholder="" />
+      <label>Comment </label>
+      <input [(ngModel)]="memo" name="memo" type="text" placeholder=""/>
       <!--<textarea [(ngModel)]="memo" name="memo" placeholder="Any preferences or restrictions"></textarea>-->
     </div>
   </div>
@@ -75,6 +75,7 @@
   <button (click)="add()" class="button">Submit</button>
 </form>
 
-<button (click)="sendMessage()" class="button" >Display Addresses</button>
+<button (click)="sendMessage()" class="button">Display Addresses</button>
 
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true&key=AIzaSyARZV20YYnYyyW-sUc0WorytUkX49-CwH8&libraries=places&language=en-US"></script>
+<script type="text/javascript"
+        src="https://maps.google.com/maps/api/js?sensor=true&key=AIzaSyARZV20YYnYyyW-sUc0WorytUkX49-CwH8&libraries=places&language=en-US"></script>

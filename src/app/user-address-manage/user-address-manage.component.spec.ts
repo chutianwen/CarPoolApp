@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UserAddressManageComponent } from './user-address-manage.component';
+import {UserAddressManageComponent} from './user-address-manage.component';
 
 describe('UserAddressManageComponent', () => {
   let component: UserAddressManageComponent;
@@ -8,9 +8,9 @@ describe('UserAddressManageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserAddressManageComponent ]
+      declarations: [UserAddressManageComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

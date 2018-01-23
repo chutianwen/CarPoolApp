@@ -1,11 +1,11 @@
 ///<reference path="../../../node_modules/rxjs/Observable.d.ts"/>
-import {Component, Output, OnInit, EventEmitter, NgZone, ElementRef, ViewChild} from '@angular/core';
-import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreModule} from "angularfire2/firestore";
-import { Observable } from 'rxjs/Observable';
+import {Component, ElementRef, EventEmitter, NgZone, OnInit, Output, ViewChild} from '@angular/core';
+import {AngularFirestore, AngularFirestoreCollection} from "angularfire2/firestore";
+import {Observable} from 'rxjs/Observable';
 import {MapsAPILoader} from "@agm/core";
-import {AngularFireDatabase} from "angularfire2/database";
 import {FormControl} from "@angular/forms";
-import {} from '@types/googlemaps';
+
+// this is very necessary, otherwise namespace 'google' cannot be found.
 
 interface userActivity {
   // fields from input documents
@@ -23,8 +23,9 @@ interface userActivity {
 /**
  * Send userData to MapComponent, for displaying on Map.
  */
-export class messageToMapComponent{
-  constructor(public userName: string, public address: string){}
+export class messageToMapComponent {
+  constructor(public userName: string, public address: string) {
+  }
 }
 
 @Component({
@@ -48,7 +49,7 @@ export class UserAddressManageComponent implements OnInit {
   public searchControl: FormControl;
 
   @ViewChild("search")
-  public searchElementRef:ElementRef;
+  public searchElementRef: ElementRef;
 
   // collection from fire base
   userActivityCollection: AngularFirestoreCollection<userActivity>;
@@ -121,7 +122,7 @@ export class UserAddressManageComponent implements OnInit {
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
-          this.address = place.name;
+          this.address = place.formatted_address;
         });
       });
     });

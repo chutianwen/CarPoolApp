@@ -1,12 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ApplicationRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 
-import { AgmCoreModule } from '@agm/core';
-import { GoogleMapComponent } from './google-map/google-map.component';
-import { UserAddressManageComponent } from './user-address-manage/user-address-manage.component';
+import {AgmCoreModule} from '@agm/core';
+import {GoogleMapComponent} from './google-map/google-map.component';
+import {UserAddressManageComponent} from './user-address-manage/user-address-manage.component';
 import {AngularFireModule} from "angularfire2";
 import {AngularFirestoreModule} from "angularfire2/firestore";
 import {AngularFireDatabaseModule} from "angularfire2/database";
@@ -40,10 +40,10 @@ export const firebaseConfig = {
     ReactiveFormsModule
   ],
   providers: [],
-  declarations: [ AppComponent, GoogleMapComponent, UserAddressManageComponent ],
-  bootstrap: [ AppComponent ]
+  declarations: [AppComponent, GoogleMapComponent, UserAddressManageComponent],
+  bootstrap: [AppComponent]
 })
 
 
-
-export class AppModule {}
+export class AppModule {
+}

@@ -1,9 +1,10 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {geocode} from 'google-geocoding/index.js'
 import {messageToMapComponent} from "../user-address-manage/user-address-manage.component";
 
 class marker {
-  constructor(public userName:string = "", public lat:number = 0, public lng:number =0){}
+  constructor(public userName: string = "", public lat: number = 0, public lng: number = 0) {
+  }
 }
 
 @Component({
@@ -30,7 +31,7 @@ export class GoogleMapComponent implements OnInit {
   // function from google-geocoding/index.js
   google_geocoding = geocode;
 
-  receiveMessage(event){
+  receiveMessage(event) {
     this.userAddressDataMessageReceive = event;
     this.markers = this.userAddressDataMessageReceive.map(msg => this.messageToMarker(msg));
   }
@@ -40,7 +41,7 @@ export class GoogleMapComponent implements OnInit {
    * @param {messageToMapComponent} msg
    * @returns {marker}
    */
-  messageToMarker(msg:messageToMapComponent): marker{
+  messageToMarker(msg: messageToMapComponent): marker {
     // Needs to define an instance of marker here, since geocoding below not returns any marker.
     let currentMarker = new marker(msg.userName, this.lat, this.lng);
     this.google_geocoding(msg.address, function (err, location) {
@@ -60,13 +61,15 @@ export class GoogleMapComponent implements OnInit {
   /**
    * For debugging
    */
-  showAddresses(){
+  showAddresses() {
     console.log("showing userAddressDataMessage:");
     console.log(this.userAddressDataMessageReceive);
     console.log("showing markers");
     console.log(this.markers);
   }
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
