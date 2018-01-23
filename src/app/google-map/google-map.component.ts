@@ -1,5 +1,4 @@
 import { Component, OnInit} from '@angular/core';
-import { MouseEvent } from '@agm/core';
 import {geocode} from 'google-geocoding/index.js'
 import {messageToMapComponent} from "../user-address-manage/user-address-manage.component";
 
@@ -30,7 +29,7 @@ export class GoogleMapComponent implements OnInit {
   lng: number = -77.32774049999999;
 
   // receive by child component user-address-manage.component
-  userAddressDataMessage: Array<messageToMapComponent>;
+  userAddressDataMessageReceive: Array<messageToMapComponent>;
 
   // markers gonna shown on map
   markers: Array<marker>;
@@ -39,8 +38,8 @@ export class GoogleMapComponent implements OnInit {
   google_geocoding = geocode;
 
   receiveMessage(event){
-    this.userAddressDataMessage = event;
-    this.markers = this.userAddressDataMessage.map(msg => this.messageToMarker(msg));
+    this.userAddressDataMessageReceive = event;
+    this.markers = this.userAddressDataMessageReceive.map(msg => this.messageToMarker(msg));
   }
 
   /**
@@ -70,7 +69,7 @@ export class GoogleMapComponent implements OnInit {
    */
   showAddresses(){
     console.log("showing userAddressDataMessage:");
-    console.log(this.userAddressDataMessage);
+    console.log(this.userAddressDataMessageReceive);
     console.log("showing markers");
     console.log(this.markers);
   }

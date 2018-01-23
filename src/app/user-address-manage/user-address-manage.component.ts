@@ -2,6 +2,7 @@
 import {Component, Output, OnInit, EventEmitter} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreModule} from "angularfire2/firestore";
 import { Observable } from 'rxjs/Observable';
+import {MapsAPILoader} from "@agm/core";
 
 interface userActivity {
   // fields from input documents
@@ -20,13 +21,7 @@ interface userActivity {
  * Send userData to MapComponent, for displaying on Map.
  */
 export class messageToMapComponent{
-  userName: string;
-  address: string;
-
-  constructor(userName: string, address: string){
-    this.userName = userName;
-    this.address = address;
-  }
+  constructor(public userName: string, public address: string){}
 }
 
 @Component({
@@ -52,25 +47,28 @@ export class UserAddressManageComponent implements OnInit {
   userActivities: Observable<Array<userActivity>>;
 
   // messages gonna be sent
-  userAddressDataMessage: Array<messageToMapComponent>;
+  userAddressDataMessageSent: Array<messageToMapComponent>;
 
   public userSettings: any = {
-    showRecentSearch: false,
-    geoCountryRestriction: ['in'],
-    searchIconUrl: 'http://downloadicons.net/sites/default/files/identification-search-magnifying-glass-icon-73159.png'
+    geoLocation: [37.76999, -122.44696],
+    geoRadius: 5
   };
 
-  autoCompleteCallback(data: any): any {
+  autoCompleteCallback(data: any) {
     this.address = JSON.stringify(data);
   }
 
+  // message sender
   @Output() messageEvent = new EventEmitter<Array<messageToMapComponent>>();
 
-  sendMessage(){
-    this.messageEvent.emit(this.userAddressDataMessage);
+  /**
+   * Sent userAddressDataMessageSent to parent component GoogleMapComponent
+   */
+  sendMessage() {
+    this.messageEvent.emit(this.userAddressDataMessageSent);
   }
 
-  add(){
+  add() {
     this.userActivityCollection.doc(this.userName).set({
       userName: this.userName,
       arrival: this.arrival,
@@ -80,23 +78,26 @@ export class UserAddressManageComponent implements OnInit {
       zipCode: this.zipCode,
       price: this.price,
       memo: this.memo
-    }).catch((err)=>{
+    }).catch((err) => {
       // alert(err);
       console.log(err);
     });
   }
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore) {
+  }
 
   ngOnInit() {
     this.userActivityCollection = this.db.collection("userActivityCollection");
     this.userActivities = this.userActivityCollection.valueChanges();
     let res = this.userActivities.forEach(x => {
-      this.userAddressDataMessage = x.map(doc => {
+      this.userAddressDataMessageSent = x.map(doc => {
         return new messageToMapComponent(doc.userName, doc.address);
       });
+      alert("DDD");
+      this.sendMessage();
     });
     res.catch(reject => console.log(reject));
   }
-
 }
+

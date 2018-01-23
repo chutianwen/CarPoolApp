@@ -28,7 +28,7 @@ export const firebaseConfig = {
     CommonModule,
     FormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDgBGcjD3ZvdWrmkKeaRT-S-W47ARIZxj4'
+      apiKey: 'AIzaSyBcm5AnNDQq_IOMjSJ3bnw-96Y3TSYFKDE'
     }),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule.enablePersistence(),
