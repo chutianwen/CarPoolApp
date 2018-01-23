@@ -77,20 +77,32 @@ export class UserAddressManageComponent implements OnInit {
     this.messageEvent.emit(this.userAddressDataMessageSent);
   }
 
-  add() {
-    this.userActivityCollection.doc(this.userName).set({
-      userName: this.userName,
-      arrival: this.arrival,
-      departure: this.departure,
-      role: this.role,
-      address: this.address,
-      zipCode: this.zipCode,
-      price: this.price,
-      memo: this.memo
-    }).catch((err) => {
-      // alert(err);
-      console.log(err);
-    });
+  /**
+   * Submit userInput data to firebase.
+   */
+  submit() {
+    // if address still empty, that means address is not parsed by geoCoding yet, redo
+    // In real time, this will prevent user submit wrong address. Since hit "enter" will call
+    // submit() automatically. User may insert the old address to firebase.
+    if(this.address != "") {
+      // address got new value
+      this.userActivityCollection.doc(this.userName).set({
+        userName: this.userName,
+        arrival: this.arrival,
+        departure: this.departure,
+        role: this.role,
+        address: this.address,
+        zipCode: this.zipCode,
+        price: this.price,
+        memo: this.memo
+      }).catch((err) => {
+        // alert(err);
+        console.log(err);
+      });
+      // reset ngModel address
+      this.address = "";
+    }
+    // reset address
   }
 
   constructor(private db: AngularFirestore, private mapsAPILoader: MapsAPILoader, private ngZone: NgZone) {
