@@ -49,7 +49,8 @@ export class GoogleMapComponent implements OnInit {
   }
 
   addressToLongLat(address:string): marker{
-    let res = new marker(0, 0);
+    // Needs to define an instance of marker here, since geocoding below not returns any marker.
+    let res = new marker(this.lat, this.lng);
     this.google_geocoding(address, function (err, location) {
       if (err) {
         // console.log('Error: ' + err);
@@ -68,8 +69,6 @@ export class GoogleMapComponent implements OnInit {
    * For debugging
    */
   showAddresses(){
-    console.log(this.google_geocoding);
-
     console.log("showing addresses:");
     console.log(this.addresses);
     console.log("showing markers");
