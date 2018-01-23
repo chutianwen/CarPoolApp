@@ -27,6 +27,7 @@
     "core-js": "^2.4.1",
     "firebase": "^4.9.0",
     "google-geocoding": "^0.1.7",
+    "ng4-geoautocomplete": "^0.1.0",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

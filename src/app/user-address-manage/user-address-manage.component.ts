@@ -1,10 +1,7 @@
 ///<reference path="../../../node_modules/rxjs/Observable.d.ts"/>
-
-
 import {Component, Output, OnInit, EventEmitter} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection, AngularFirestoreModule} from "angularfire2/firestore";
 import { Observable } from 'rxjs/Observable';
-
 
 interface userActivity {
   // fields from input documents
@@ -19,6 +16,19 @@ interface userActivity {
   memo: string;
 }
 
+/**
+ * Send userData to MapComponent, for displaying on Map.
+ */
+export class messageToMapComponent{
+  userName: string;
+  address: string;
+
+  constructor(userName: string, address: string){
+    this.userName = userName;
+    this.address = address;
+  }
+}
+
 @Component({
   selector: 'app-user-address-manage',
   templateUrl: './user-address-manage.component.html',
@@ -27,6 +37,7 @@ interface userActivity {
 
 export class UserAddressManageComponent implements OnInit {
 
+  // ng-models, binding fields from user input data.
   userName: string = "Jing";
   arrival: string = "";
   departure: string = "";
@@ -38,15 +49,25 @@ export class UserAddressManageComponent implements OnInit {
 
   // collection from fire base
   userActivityCollection: AngularFirestoreCollection<userActivity>;
-  userActivities: Observable<userActivity[]>;
+  userActivities: Observable<Array<userActivity>>;
 
   // messages gonna be sent
-  addresses: Array<string>;
+  userAddressDataMessage: Array<messageToMapComponent>;
 
-  @Output() messageEvent = new EventEmitter<Array<String>>();
+  public userSettings: any = {
+    showRecentSearch: false,
+    geoCountryRestriction: ['in'],
+    searchIconUrl: 'http://downloadicons.net/sites/default/files/identification-search-magnifying-glass-icon-73159.png'
+  };
+
+  autoCompleteCallback(data: any): any {
+    this.address = JSON.stringify(data);
+  }
+
+  @Output() messageEvent = new EventEmitter<Array<messageToMapComponent>>();
 
   sendMessage(){
-    this.messageEvent.emit(this.addresses);
+    this.messageEvent.emit(this.userAddressDataMessage);
   }
 
   add(){
@@ -71,8 +92,11 @@ export class UserAddressManageComponent implements OnInit {
     this.userActivityCollection = this.db.collection("userActivityCollection");
     this.userActivities = this.userActivityCollection.valueChanges();
     let res = this.userActivities.forEach(x => {
-      this.addresses = x.map(r => r.address);
+      this.userAddressDataMessage = x.map(doc => {
+        return new messageToMapComponent(doc.userName, doc.address);
+      });
     });
+    res.catch(reject => console.log(reject));
   }
 
 }

@@ -11,6 +11,7 @@ import {AngularFireModule} from "angularfire2";
 import {AngularFirestoreModule} from "angularfire2/firestore";
 import {AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireAuthModule} from "angularfire2/auth";
+import {Ng4GeoautocompleteModule} from "ng4-geoautocomplete";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBqvRd9oGomx7YejW1NwCMsAHpGqZmRaiQ",
@@ -33,7 +34,8 @@ export const firebaseConfig = {
     AngularFirestoreModule.enablePersistence(),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    Ng4GeoautocompleteModule.forRoot()
   ],
   providers: [],
   declarations: [ AppComponent, GoogleMapComponent, UserAddressManageComponent ],
