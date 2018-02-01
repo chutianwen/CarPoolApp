@@ -6,6 +6,7 @@ import {MapsAPILoader} from "@agm/core";
 import {FormControl} from "@angular/forms";
 // this is very necessary, otherwise namespace 'google' cannot be found.
 import {} from '@types/googlemaps'
+// import {FilterPipe} from '.././filter.pipe';
 
 interface userActivity {
   // fields from input documents
@@ -28,14 +29,18 @@ export class messageToMapComponent {
   }
 }
 
+// @Pipe()
 @Component({
   selector: 'app-user-address-manage',
   templateUrl: './user-address-manage.component.html',
   styleUrls: ['./user-address-manage.component.css']
+  // pipes: [FilterPipe]
 })
 
 export class UserAddressManageComponent implements OnInit {
-
+  //@Output() updateForm: EventEmitter<any> = new EventEmitter<any>();rui
+  // message sender
+  @Output() messageEvent = new EventEmitter<Array<messageToMapComponent>>();
   // ng-models, binding fields from user input data.
   userName: string = "Jing";
   arrival: string = "";
@@ -67,8 +72,7 @@ export class UserAddressManageComponent implements OnInit {
     this.address = JSON.stringify(data);
   }
 
-  // message sender
-  @Output() messageEvent = new EventEmitter<Array<messageToMapComponent>>();
+
 
   /**
    * Sent userAddressDataMessageSent to parent component GoogleMapComponent

@@ -1,4 +1,6 @@
-
+<!-- <form action="" id="filter">
+  <input type="text" [(ngModel)]="query">
+</form> -->
 <table class="table">
   <thead>
   <tr>
@@ -14,7 +16,8 @@
   </thead>
   <tbody>
   <tr *ngFor="let userActivity of userActivities | async">
-    <td class="left">{{userActivity.userName}}</td>
+    <!--<td class="left">{{userActivity.userName | filter}}</td>-->
+    <td>{{userActivity.userName| filter}}</td>
     <td>{{userActivity.arrival}}</td>
     <td>{{userActivity.departure}}</td>
     <td>{{userActivity.role}}</td>
@@ -26,64 +29,74 @@
   </tbody>
 </table>
 
+
 <form>
-  <div class="row">
-    <div class="large-4 columns">
-      <label>Name</label>
-      <input type="text" [(ngModel)]="userName" name="name" placeholder="Your full name no space"/>
-    </div>
-    <div class="large-4 columns">
+  <section class="form-block">
+    <h3>Add My Info</h3>
+    <div class="row">
+      <div class="col-lg-1"><label class="required">Name</label></div>
+      <div class="col-lg-3"><input type="text" [(ngModel)]="userName"
+        name="name" placeholder="Your full name no space"/></div>
       <!-- Time to reach office -->
-      <label>Arrival</label>
+      <div class="col-lg-1"><label>Arrival</label></div>
       <owl-date-time [pickerType]="'timer'" #dt></owl-date-time>
-      <input [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="arrival" name="arrival" type="text" placeholder="9:00 A.M."/>
-      <!--<input [(ngModel)]="arrival" name="arrival" type="text" placeholder="9:00 A.M."/>-->
-    </div>
-    <div class="large-4 columns">
+      <div class="col-lg-3"><input [owlDateTimeTrigger]="dt"
+        [owlDateTime]="dt" [(ngModel)]="arrival"
+        name="arrival" type="text" placeholder="9:00 A.M."/></div>
+        <!--<input [(ngModel)]="arrival" name="arrival" type="text" placeholder="9:00 A.M."/>-->
       <!-- Time to leave office -->
-      <label>Departure</label>
+      <div class="col-lg-1"><label>Departure</label></div>
       <owl-date-time [pickerType]="'timer'" #dt2></owl-date-time>
-      <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" [(ngModel)]="departure" name="departure" type="text" placeholder="5:00 P.M."/>
-    </div>
+      <div class="col-lg-3"><input [owlDateTimeTrigger]="dt2"
+        [owlDateTime]="dt2" [(ngModel)]="departure"
+        name="departure" type="text" placeholder="5:00 P.M."/></div>
+      </div>
+
+      <div class="row">
+        <!-- <div class="col-lg-1"><label>Driver or Rider?</label></div>
+        <div class="col-lg-3">
+          <select [(ngModel)]="role" name="role">
+            <option value="Driver">Driver</option>
+            <option value="Rider">Rider</option>
+          </select>
+        </div> -->
+        <div class="col-lg-1"><label>Role</label></div>
+        <div class="col-lg-3">
+            <div class="checkbox">
+                <input type="checkbox" id="checkrads_1" value="Driver">
+                <label for="checkrads_1">Driver</label>
+                <input type="checkbox" id="checkrads_2">
+                <label for="checkrads_2" value="Rider">Rider</label>
+            </div>
+        </div>
+
+    <div class="col-lg-1"><label>Trip Fare</label></div>
+    <div class="col-lg-3"><input [(ngModel)]="price" name="price" type="number" placeholder="Trip Fare"/></div>
 
 
-  </div>
-
-  <div class="row">
-    <div class="large-4 columns">
-      <label>Driver or Rider?
-        <select [(ngModel)]="role" name="role">
-          <option value="Driver">Driver</option>
-          <option value="Rider">Rider</option>
-        </select>
-      </label>
-    </div>
-
-    <div class="large-4 columns">
-      <label>Trip Fare</label><input [(ngModel)]="price" name="price" type="number" placeholder="Trip Fare"/>
-    </div>
-
-    <div class="large-4 columns">
-      <label>Address</label>
+    <div class="col-lg-1"><label>Address</label></div>
       <!--<ng4geo-autocomplete [userSettings]="userSettings" (componentCallback)="autoCompleteCallback($event)"></ng4geo-autocomplete>-->
       <!--<input [(ngModel)]="address" name="address" type="text" />-->
-      <input placeholder="search for location" spellcheck="off" type="text" class="form-control" #search
-             [formControl]="searchControl"  >
-    </div>
+    <div class="col-lg-3"><input placeholder="search for location" spellcheck="off" type="text" class="form-control"
+      #search [formControl]="searchControl"  ></div>
+
   </div>
 
   <div class="row">
-    <div class="large-12 columns">
-      <label>Comment </label>
-      <input [(ngModel)]="memo" name="memo" type="text" placeholder=""/>
+      <div class="col-lg-1"><label>Comment </label></div>
+      <div class="col-lg-11">
+        <textarea [(ngModel)]="memo" name="memo" type="text" placeholder="" rows="5"></textarea>
+      </div>
       <!--<textarea [(ngModel)]="memo" name="memo" placeholder="Any preferences or restrictions"></textarea>-->
-    </div>
   </div>
 
-  <button (click)="submit()" class="button">Submit</button>
+
+  <button class="btn btn-primary" (click)="submit()">Submit</button>
+
+  </section>
 </form>
 
-<button (click)="sendMessage()" class="button">Display Addresses</button>
+<button class="btn btn-outline" (click)="sendMessage()">Display Addresses</button>
 
 
 

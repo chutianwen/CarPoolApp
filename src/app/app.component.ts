@@ -12,4 +12,18 @@ export class AppComponent {
   lng: number = 7.809007;
   lat2: number = 59.678418;
   lng2: number = 9.809007;
+
+  // Allan's Tutorial
+  // people =[{
+  //   name:'Jing Han',
+  //   pwd:'designer'
+  // },{
+  //   name:'Allan Bond',
+  //   pwd:'developer'
+  // }
+  // ]
+
+  // onSmacked(p){
+  //   window.alert(p.name+p.pwd + "was smacked");
+  // }
 }

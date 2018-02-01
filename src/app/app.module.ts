@@ -7,7 +7,9 @@ import { RouterModule } from '@angular/router';
 
 
 import {AgmCoreModule} from '@agm/core';
+
 import {GoogleMapComponent} from './google-map/google-map.component';
+import {AboutComponent} from './about/about.component';
 import {UserAddressManageComponent} from './user-address-manage/user-address-manage.component';
 import {AngularFireModule} from "angularfire2";
 import {AngularFirestoreModule} from "angularfire2/firestore";
@@ -19,6 +21,7 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-b
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ClarityModule } from "@clr/angular";
 import { NavComponent } from './nav/nav.component';
+import { FilterPipe } from './filter.pipe';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBqvRd9oGomx7YejW1NwCMsAHpGqZmRaiQ",
@@ -48,6 +51,7 @@ export const firebaseConfig = {
     RouterModule.forRoot([
       { path:'',component: GoogleMapComponent },
       { path:'add',component: UserAddressManageComponent },
+      { path: 'about',component: AboutComponent },
       { path: '**',component: NotFoundComponent }
     ]),
     Ng4GeoautocompleteModule.forRoot(),
@@ -58,7 +62,9 @@ export const firebaseConfig = {
     NoopAnimationsModule
   ],
   providers: [],
-  declarations: [ AppComponent, GoogleMapComponent, UserAddressManageComponent, NotFoundComponent, NavComponent ],
+  declarations: [ AppComponent, GoogleMapComponent, UserAddressManageComponent, NotFoundComponent,
+    NavComponent, AboutComponent, FilterPipe],
+
   bootstrap: [ AppComponent ]
 })
 

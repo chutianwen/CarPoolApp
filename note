@@ -2,3 +2,4 @@ npm install ng-pick-datetime --save
 npm install @angular/animations --save
 npm install --save @types/googlemaps
 
+install clarity info

@@ -1,0 +1,128 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+// @import "../node_modules/clarity-ui/src/utils/dependencies.clarity"; 
+// @import "../node_modules/clarity-ui/src/utils/components.clarity";
+
+$darkblue:#233E66;
+$blue:#0082D1;
+$red:#FB483D;
+$clr-btn-primary-bg-color:$darkblue;
+
+.btn-primary .btn, .btn.btn-primary{
+    background-color: $blue;
+    border-color:$blue;
+}
+.btn-primary .btn:hover, .btn.btn-primary:hover{
+    background-color: lighten($blue,10%);
+}
+input::placeholder {
+    color: #A7B2C2;
+  }
+  
+  input[type=text]:not([readonly]), input[type=password]:not([readonly]), input[type=number]:not([readonly]), 
+  input[type=email]:not([readonly]), input[type=url]:not([readonly]), input[type=tel]:not([readonly]), 
+  input[type=date]:not([readonly]), input[type=time]:not([readonly]), input[type=datetime-local]:not([readonly]), 
+  input[type=select]:not([readonly]),.select{
+      background: none;
+      color:black;
+      background-color: white;
+      border: 1px solid #dddbda;
+      border-radius: 0.25rem;
+      transition: border 0.1s linear,0.1s linear;
+      display: inline-block;
+      padding: 0 0.25rem;
+      line-height: 1.25rem;
+      min-height: calc(1.25rem + (1px * 2));
+      min-width: 1.25rem;
+  }
+  
+  input[type=text]:active,input[type=password]:active, input[type=number]:active, input[type=email]:active, input[type=url]:active, input[type=tel]:active, input[type=date]:active, input[type=time]:active, input[type=datetime-local]:active{
+    outline: 0;
+    border-color: #0082D1;
+    // box-shadow: 0 0 3px #0070D2;
+    transition: border 0.1s linear, background-color 0.1s linear;
+    background: none;
+        background-color: white;
+  }
+  input[type=text]:focus,input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, input[type=url]:focus, input[type=tel]:focus, input[type=date]:focus, input[type=time]:focus, input[type=datetime-local]:focus{
+    outline: 0;
+    border-color: #0082D1;
+    // box-shadow: 0 0 3px #0070D2;
+    transition: border 0.1s linear, background-color 0.1s linear;
+    background: none;
+    background-color: white;
+  }
+  
+  .finra-invalid-input input{
+    border-color: #FB483D !important;
+  }
+  .finra-invalid-input label{
+    color: #FB483D !important;
+  }
+  .finra-invalid-input input:focus{
+    border-color: #9c0c03 !important;
+  }
+
+//-------------------Navigation-----------------------
+  .header-triangle{
+    position: relative;
+    top: 0;
+    //left: -70px;
+    -webkit-transform: skew(-30deg);
+    transform: skew(-30deg);
+    background: linear-gradient(30deg,#0082d1,#99cded);
+    opacity: 1;
+    height:60px;
+    width:160px;
+    display: inline-block;
+    box-shadow:0 2px 2px 0 rgba(0,0,0,.14), 1px 0px 5px 0 rgba(0,0,0,.12);
+    cursor:pointer;
+    z-index: 100;
+  }
+  
+  .header-triangle:before{
+    content:"";
+    position: relative;
+    display: block;
+    opacity:0;
+    background: linear-gradient(30deg,#9EC405,#0082d1);
+    height:60px;
+    width:160px;
+    box-shadow:0 2px 2px 0 rgba(0,0,0,.14), 1px 0px 5px 0 rgba(0,0,0,.12);
+    cursor:pointer;
+    z-index: -100;
+    -webkit-transition:opacity 0.8s ease-in-out;
+    transition:opacity 0.8s ease-in-out;
+  }
+  
+  .header-triangle:hover:before{
+    opacity: 1;
+  }
+  .header-triangle:active:before{
+    opacity: 0;
+  }
+  
+  .switch{
+    font-size:16px;
+    position:relative;
+    line-height: 2.5rem;
+    padding: 0 1rem;
+    font-weight: 500;
+    color:white;
+    text-decoration: none;
+    -webkit-transform: skew(30deg) !important;
+    transform: skew(30deg) !important;
+    top: -57px;
+  }
+  .switch:link{
+    color:white;
+  }
+  .switch a{
+    color:white;
+  }
+
+  @media (min-width: 992px){
+    .row {
+        line-height: 2rem;
+    }
+}
