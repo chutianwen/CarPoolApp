@@ -1,6 +1,5 @@
-<!-- <form action="" id="filter">
-  <input type="text" [(ngModel)]="query">
-</form> -->
+<input [(ngModel)]="searchText" placeholder="search text goes here">
+
 <table class="table">
   <thead>
   <tr>
@@ -15,9 +14,8 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let userActivity of userActivities | async">
-    <!--<td class="left">{{userActivity.userName | filter}}</td>-->
-    <td>{{userActivity.userName| filter}}</td>
+  <tr *ngFor="let userActivity of userActivities | async | usernameFilter : searchText">
+    <td>{{userActivity.userName}}</td>
     <td>{{userActivity.arrival}}</td>
     <td>{{userActivity.departure}}</td>
     <td>{{userActivity.role}}</td>
@@ -36,62 +34,62 @@
     <div class="row">
       <div class="col-lg-1"><label class="required">Name</label></div>
       <div class="col-lg-3"><input type="text" [(ngModel)]="userName"
-        name="name" placeholder="Your full name no space"/></div>
+                                   name="name" placeholder="Your full name no space"/></div>
       <!-- Time to reach office -->
       <div class="col-lg-1"><label>Arrival</label></div>
       <owl-date-time [pickerType]="'timer'" #dt></owl-date-time>
       <div class="col-lg-3"><input [owlDateTimeTrigger]="dt"
-        [owlDateTime]="dt" [(ngModel)]="arrival"
-        name="arrival" type="text" placeholder="9:00 A.M."/></div>
-        <!--<input [(ngModel)]="arrival" name="arrival" type="text" placeholder="9:00 A.M."/>-->
+                                   [owlDateTime]="dt" [(ngModel)]="arrival"
+                                   name="arrival" type="text" placeholder="9:00 A.M."/></div>
+      <!--<input [(ngModel)]="arrival" name="arrival" type="text" placeholder="9:00 A.M."/>-->
       <!-- Time to leave office -->
       <div class="col-lg-1"><label>Departure</label></div>
       <owl-date-time [pickerType]="'timer'" #dt2></owl-date-time>
       <div class="col-lg-3"><input [owlDateTimeTrigger]="dt2"
-        [owlDateTime]="dt2" [(ngModel)]="departure"
-        name="departure" type="text" placeholder="5:00 P.M."/></div>
+                                   [owlDateTime]="dt2" [(ngModel)]="departure"
+                                   name="departure" type="text" placeholder="5:00 P.M."/></div>
+    </div>
+
+    <div class="row">
+      <!-- <div class="col-lg-1"><label>Driver or Rider?</label></div>
+      <div class="col-lg-3">
+        <select [(ngModel)]="role" name="role">
+          <option value="Driver">Driver</option>
+          <option value="Rider">Rider</option>
+        </select>
+      </div> -->
+      <div class="col-lg-1"><label>Role</label></div>
+      <div class="col-lg-3">
+        <div class="checkbox">
+          <input type="checkbox" id="checkrads_1" value="Driver">
+          <label for="checkrads_1">Driver</label>
+          <input type="checkbox" id="checkrads_2">
+          <label for="checkrads_2" value="Rider">Rider</label>
+        </div>
       </div>
 
-      <div class="row">
-        <!-- <div class="col-lg-1"><label>Driver or Rider?</label></div>
-        <div class="col-lg-3">
-          <select [(ngModel)]="role" name="role">
-            <option value="Driver">Driver</option>
-            <option value="Rider">Rider</option>
-          </select>
-        </div> -->
-        <div class="col-lg-1"><label>Role</label></div>
-        <div class="col-lg-3">
-            <div class="checkbox">
-                <input type="checkbox" id="checkrads_1" value="Driver">
-                <label for="checkrads_1">Driver</label>
-                <input type="checkbox" id="checkrads_2">
-                <label for="checkrads_2" value="Rider">Rider</label>
-            </div>
-        </div>
-
-    <div class="col-lg-1"><label>Trip Fare</label></div>
-    <div class="col-lg-3"><input [(ngModel)]="price" name="price" type="number" placeholder="Trip Fare"/></div>
+      <div class="col-lg-1"><label>Trip Fare</label></div>
+      <div class="col-lg-3"><input [(ngModel)]="price" name="price" type="number" placeholder="Trip Fare"/></div>
 
 
-    <div class="col-lg-1"><label>Address</label></div>
+      <div class="col-lg-1"><label>Address</label></div>
       <!--<ng4geo-autocomplete [userSettings]="userSettings" (componentCallback)="autoCompleteCallback($event)"></ng4geo-autocomplete>-->
       <!--<input [(ngModel)]="address" name="address" type="text" />-->
-    <div class="col-lg-3"><input placeholder="search for location" spellcheck="off" type="text" class="form-control"
-      #search [formControl]="searchControl"  ></div>
+      <div class="col-lg-3"><input placeholder="search for location" spellcheck="off" type="text" class="form-control"
+                                   #search [formControl]="searchControl"  ></div>
 
-  </div>
+    </div>
 
-  <div class="row">
+    <div class="row">
       <div class="col-lg-1"><label>Comment </label></div>
       <div class="col-lg-11">
         <textarea [(ngModel)]="memo" name="memo" type="text" placeholder="" rows="5"></textarea>
       </div>
       <!--<textarea [(ngModel)]="memo" name="memo" placeholder="Any preferences or restrictions"></textarea>-->
-  </div>
+    </div>
 
 
-  <button class="btn btn-primary" (click)="submit()">Submit</button>
+    <button class="btn btn-primary" (click)="submit()">Submit</button>
 
   </section>
 </form>
@@ -101,4 +99,5 @@
 
 
 <!--<script type="text/javascript"-->
-        <!--src="https://maps.google.com/maps/api/js?sensor=true&key=AIzaSyARZV20YYnYyyW-sUc0WorytUkX49-CwH8&libraries=places&language=en-US"></script>-->
+<!--src="https://maps.google.com/maps/api/js?sensor=true&key=AIzaSyARZV20YYnYyyW-sUc0WorytUkX49-CwH8&libraries=places&language=en-US"></script>-->
+© 2018 GitHub, Inc.

@@ -6,9 +6,9 @@ import {MapsAPILoader} from "@agm/core";
 import {FormControl} from "@angular/forms";
 // this is very necessary, otherwise namespace 'google' cannot be found.
 import {} from '@types/googlemaps'
-// import {FilterPipe} from '.././filter.pipe';
+import {Timestamp} from "rxjs/Rx";
 
-interface userActivity {
+export interface userActivity {
   // fields from input documents
   // !userName cannot be empty String.
   userName: string;
@@ -29,22 +29,18 @@ export class messageToMapComponent {
   }
 }
 
-// @Pipe()
 @Component({
   selector: 'app-user-address-manage',
   templateUrl: './user-address-manage.component.html',
   styleUrls: ['./user-address-manage.component.css']
-  // pipes: [FilterPipe]
 })
 
 export class UserAddressManageComponent implements OnInit {
-  //@Output() updateForm: EventEmitter<any> = new EventEmitter<any>();rui
-  // message sender
-  @Output() messageEvent = new EventEmitter<Array<messageToMapComponent>>();
+
   // ng-models, binding fields from user input data.
   userName: string = "Jing";
-  arrival: string = "";
-  departure: string = "";
+  arrival: Timestamp<string>;
+  departure: Timestamp<string>;
   role: string = "";
   address: string = "";
   zipCode: string = "";
@@ -72,7 +68,8 @@ export class UserAddressManageComponent implements OnInit {
     this.address = JSON.stringify(data);
   }
 
-
+  // message sender
+  @Output() messageEvent = new EventEmitter<Array<messageToMapComponent>>();
 
   /**
    * Sent userAddressDataMessageSent to parent component GoogleMapComponent
@@ -88,24 +85,25 @@ export class UserAddressManageComponent implements OnInit {
     // if address still empty, that means address is not parsed by geoCoding yet, redo
     // In real time, this will prevent user submit wrong address. Since hit "enter" will call
     // submit() automatically. User may insert the old address to firebase.
-    if(this.address != "") {
+    // if(this.address != "") {
       // address got new value
-      this.userActivityCollection.doc(this.userName).set({
-        userName: this.userName,
-        arrival: this.arrival,
-        departure: this.departure,
-        role: this.role,
-        address: this.address,
-        zipCode: this.zipCode,
-        price: this.price,
-        memo: this.memo
-      }).catch((err) => {
-        // alert(err);
-        console.log(err);
-      });
+    alert(this.arrival);
+    this.userActivityCollection.doc(this.userName).set({
+      userName: this.userName,
+      arrival: this.arrival,
+      departure: this.departure,
+      role: this.role,
+      address: this.address,
+      zipCode: this.zipCode,
+      price: this.price,
+      memo: this.memo
+    }).catch((err) => {
+      // alert(err);
+      console.log(err);
+    });
       // reset ngModel address
-      this.address = "";
-    }
+      // this.address = "";
+    // }
     // reset address
   }
 
@@ -116,6 +114,8 @@ export class UserAddressManageComponent implements OnInit {
       this.userAddressDataMessageSent = x.map(doc => {
         return new messageToMapComponent(doc.userName, doc.address);
       });
+      // if difference is huge, then call this method.
+      this.sendMessage();
     });
     res.catch(reject => console.log(reject));
   }
@@ -144,4 +144,3 @@ export class UserAddressManageComponent implements OnInit {
     });
   }
 }
-

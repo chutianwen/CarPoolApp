@@ -21,7 +21,7 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-b
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ClarityModule } from "@clr/angular";
 import { NavComponent } from './nav/nav.component';
-import { FilterPipe } from './filter.pipe';
+import {FilterPipe} from "./user-address-manage/filter.pipe";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBqvRd9oGomx7YejW1NwCMsAHpGqZmRaiQ",
