@@ -5,7 +5,7 @@
             <div class="header-triangle">
             <button class="switch" clrDropdownTrigger style="color:white;padding-left:20px;">
                 FINRA Carpool
-                <clr-icon shape="caret down"></clr-icon>
+                <clr-icon shape="caret down" style="margin-right:0px;"></clr-icon>
             </button>
             </div>
             <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
@@ -27,8 +27,8 @@
                 </clr-dropdown>
                 <button type="button" clrDropdownItem>Link 2</button>
             </clr-dropdown-menu>
-        </clr-dropdown> 
-    
+        </clr-dropdown>
+
     <!-- <div class="header-triangle" style="left:50px; margin-right:80px;">
         <div class="switch">
           <a href="javascript://">FINRA Carpool
@@ -36,7 +36,7 @@
         </div>
       </div> -->
     </div>
-      
+
     <div class="header-nav" >
       <!--<a href="" class="nav-link">-->
         <!--<span class="nav-text">Home</span>-->
@@ -59,8 +59,13 @@
             <span class="nav-text">About</span>
           </a>
       </span>
-      
+      <span routerLinkActive="active current">
+        <a  routerLink="/finpro" class="nav-link">
+          <span class="nav-text">FinPro</span>
+        </a>
+    </span>
+
     </div>
-    
+
   </header>
 

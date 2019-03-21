@@ -3,7 +3,11 @@ import {geocode} from 'google-geocoding/index.js'
 import {messageToMapComponent} from "../user-address-manage/user-address-manage.component";
 
 class marker {
-  constructor(public userName: string = "", public lat: number = 0, public lng: number = 0) {
+  constructor(public userName: string = "",
+              public lat: number = 0, public lng: number = 0,
+              public arrival: string = "",public departure: string = "",
+              public phone: string = "", public role: string = "",
+  ){
   }
 }
 
@@ -17,7 +21,7 @@ export class GoogleMapComponent implements OnInit {
 
   // Metrics of initializing Map Display
   title: string = 'Car Pool Map';
-  zoom: number = 8;
+  zoom: number = 10;
   // initial center position for the map (DC)
   lat: number = 38.9459997;
   lng: number = -77.32774049999999;
@@ -43,7 +47,11 @@ export class GoogleMapComponent implements OnInit {
    */
   messageToMarker(msg: messageToMapComponent): marker {
     // Needs to define an instance of marker here, since geocoding below not returns any marker.
-    let currentMarker = new marker(msg.userName, this.lat, this.lng);
+    let currentMarker = new marker(
+        msg.userName, this.lat, this.lng,
+        msg.arrival, msg.departure, msg.phone, msg.role
+      );
+
     this.google_geocoding(msg.address, function (err, location) {
       if (err) {
         // console.log('Error: ' + err);

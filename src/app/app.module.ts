@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import {AgmCoreModule} from '@agm/core';
 
@@ -21,7 +21,11 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-b
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ClarityModule } from "@clr/angular";
 import { NavComponent } from './nav/nav.component';
-import {FilterPipe} from "./user-address-manage/filter.pipe";
+import { FilterPipe } from './user-address-manage/filter.pipe';
+import { FinProComponent } from './fin-pro/fin-pro.component';
+import { SummaryComponent } from './fin-pro/summary/summary.component';
+import { EmploymentComponent } from './fin-pro/employment/employment.component';
+import { SummaryTessComponent } from './fin-pro/summary-tess/summary-tess.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBqvRd9oGomx7YejW1NwCMsAHpGqZmRaiQ",
@@ -47,23 +51,24 @@ export const firebaseConfig = {
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFontAwesomeModule,
     Ng4GeoautocompleteModule.forRoot(),
     RouterModule.forRoot([
       { path:'',component: GoogleMapComponent },
       { path:'add',component: UserAddressManageComponent },
       { path: 'about',component: AboutComponent },
+      { path: 'finpro',component: FinProComponent },
       { path: '**',component: NotFoundComponent }
     ]),
     Ng4GeoautocompleteModule.forRoot(),
     ReactiveFormsModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    BrowserAnimationsModule,
-    NoopAnimationsModule
+    BrowserAnimationsModule
   ],
   providers: [],
   declarations: [ AppComponent, GoogleMapComponent, UserAddressManageComponent, NotFoundComponent,
-    NavComponent, AboutComponent, FilterPipe],
+    NavComponent, AboutComponent, FilterPipe, FinProComponent, SummaryComponent, EmploymentComponent, SummaryTessComponent],
 
   bootstrap: [ AppComponent ]
 })
