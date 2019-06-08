@@ -1,0 +1,56 @@
+
+<!-- <clr-main-container>
+<clr-header>
+  nav level 1
+  <div class="header-nav" [clr-nav-level]="1">
+    nav content 1
+  </div>
+</clr-header>
+<div class="content-container">
+  <main class="content-area">
+    nav level 2
+  </main>
+  <nav class="sidenav" [clr-nav-level]="2">
+    nav content 2
+  </nav>
+</div>
+</clr-main-container> -->
+<div style="height:60px;display:block;"></div>
+<clr-tabs>
+  <clr-tab style="justify-content:center;">
+      <button clrTabLink id="link1">Summary</button>
+      <clr-tab-content id="content1" *clrIfActive>
+       <app-summary></app-summary>
+      </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+      <button clrTabLink>Employment...</button>
+      <clr-tab-content *clrIfActive="true">
+        <app-employment></app-employment>
+      </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>Registrations</button>
+    <clr-tab-content *clrIfActive="true">
+    ...
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>Qualifications</button>
+    <clr-tab-content *clrIfActive="true">
+    ...
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>Continuing Education</button>
+    <clr-tab-content *clrIfActive="true">
+    ...
+    </clr-tab-content>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink>Disclosures</button>
+    <clr-tab-content *clrIfActive="true">
+    <app-summary-tess></app-summary-tess>
+    </clr-tab-content>
+  </clr-tab>
+</clr-tabs>

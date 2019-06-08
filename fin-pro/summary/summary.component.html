@@ -1,0 +1,119 @@
+<div class="banner">
+  <h1>Howard Brett Berger</h1>
+  <label for="CRD">CRD#: </label><span>2284367</span><br/>
+  <label for="name">Alternative Names: </label><span>None</span>
+  <div class="boxes" fxLayout="row" fxLayoutAlign="space-between stretch" >
+    <div *ngFor="let stat of stats" class="colorbox" [ngStyle]="{ 'background-color': stat.color }">
+      <span class="large"> {{ stat.data }}</span>
+      <span for="stats">{{ stat.label }}</span>
+    </div>
+  </div>
+</div><!--End banner-->
+
+<div class="right-cards">
+    <div class="card firm-card">
+      <div class="card-header">
+          North Coast Securities
+      </div>
+      <div class="card-block">
+        <label>Contact Person: </label>
+        <ul class="list" style="list-style:none; margin-left:0px">
+          <li><span> <fa name="user"></fa> John Smith</span></li>
+          <li><span> <fa name="phone"></fa>(283) 828-4837</span></li>
+          <li><span> <fa name="envelope"></fa>John.Smith@northcoast.com</span></li>
+          <li><span> <fa name="map-marker"></fa>ONE TOWER BRIDGE <br/>
+            100 FRONT STREET, SUITE 1111 <br/>
+            W. CONSHOHOCKEN , <br/>PA 19428</span></li>
+      </ul>
+      </div>
+      <div class="card-footer">
+          <button class="btn btn-sm btn-link" disabled>Prev</button> 1/1&nbsp;
+          <button class="btn btn-sm btn-link" disabled>Next</button>
+      </div>
+    </div>
+    <div class="card ql-card">
+        <div class="card-header">
+          <span> I Want To...</span>
+          <span><i class="colorblue" class="fa fa-cog"></i></span>
+        </div>
+        <div class="card-block" *ngFor="let ql of quicklinks">
+          <span><fa class="colorblue" name="{{ql.icon}}"></fa>&nbsp;&nbsp;{{ql.message}}</span>
+        </div>
+    </div>
+    <div class="card firm-card">
+        <div class="card-header">
+          <span>Current Address</span>
+          <span><i class="fa fa-edit"></i></span>
+          </div>
+        <div class="card-block"  *ngFor="let ca of currentaddress">
+          <span>{{ca.address}}</span><br/>
+          <span>{{ca.date}}</span>
+        </div>
+      <div class="card-header">Residential History</div>
+      <div class="card-block"  *ngFor="let pa of previousaddress">
+        <span>{{pa.address}}</span><br/>
+        <span>{{pa.date}}</span>
+      </div>
+    </div>
+  </div>
+
+<div class="content">
+  <div class="sections">
+    <h2>Activities</h2>
+    <div class="label-badge">
+        <a *ngFor="let badge of activitybadges" href="..." class="label clickable" [ngClass]="badge.badge_class"> 
+            {{badge.label}}
+            <span class="badge">{{badge.data}}</span>
+        </a>
+    </div>
+    <div class="card">
+      <div class="card-block card-activity" *ngFor="let al of activitylist">
+        <span class="rem15"><fa name="{{al.icon}}" class="{{al.color}}"></fa>&nbsp;&nbsp;{{al.message}}</span>
+        <button class="btn btn-link" *ngIf="al.action">{{al.action}} <fa name="chevron-right"></fa> </button>
+      </div>
+    </div>
+  </div>
+  <!-- <hr> -->
+  <div class="sections">
+    <!-- <div class="section">
+        <div class="section-head">
+            <h2>Home Address&nbsp;&nbsp;</h2>
+            <button class="btn btn-outline">Edit</button>
+        </div>
+        <div class="card">
+            <div class="card-header">Current Address</div>
+            <div class="card-block card-activity"  *ngFor="let ca of currentaddress">
+              <span>{{ca.address}}</span>
+              <span>{{ca.date}}</span>
+            </div>
+          <div class="card-header">Residential History</div>
+          <div class="card-block card-activity"  *ngFor="let pa of previousaddress">
+            <span>{{pa.address}}</span>
+            <span>{{pa.date}}</span>
+          </div>
+      </div>
+    </div> -->
+    <div class="section">
+        <div class="section-head">
+          <h2>Registrations&nbsp;&nbsp;</h2>
+          <button class="btn btn-outline">Edit</button>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <label for="formGroupExampleInput">SRO Registrations</label>
+            <div class="toggle-switch">
+                <input type="checkbox" id="toggle_5" checked>
+                <label for="toggle_5"></label>
+            </div>
+            <label for="">State Registrations</label></div>
+          <div class="card-block card-activity">
+              <img src="/assets/map.png" alt="">
+          </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+  
+      

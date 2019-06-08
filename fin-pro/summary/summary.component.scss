@@ -1,0 +1,67 @@
+// @import "../fin-pro/fin-pro.component.scss";
+@import "../fin-pro.component.scss";
+
+:host{
+
+.banner{
+    border-bottom:1px solid #D3D8E0;padding:0.5rem 0 1rem 2rem;background:white;
+}
+
+.boxes{
+    display:flex;flex-direction:row;
+}
+.colorbox{
+    display:flex;flex-direction: column; 
+    color:white; padding:0.5rem 1rem; max-width: 200px;
+    margin-right: 0.5rem;
+    .large{
+        color:white;font-size:1.5rem;line-height: 1.6rem;
+    }
+}
+.right-cards{
+    position: absolute;max-width: 290px;margin-top: 1rem;top: 4rem;right: 2rem;
+}
+.firm-card {
+    background-color: #f9f9f9;
+    .card-block{
+        background-color: white;
+    }
+    fa{
+        color:#0082D1; margin-right:0.5rem;
+    }
+}
+.ql-card{
+    .card-header{
+        background-color:#233E66; color:white;
+    }
+    .card-block:hover{
+        background-color: #f9f9f9;
+    }
+}
+// badge color
+.label.label-2, .label.label-blue, a.label.label-2, a.label.label-blue {
+    border: 1px solid #0082D1;
+}
+.label.label-blue>.badge, a.label.label-blue>.badge {
+    background: #0082D1;
+    color: #fff;
+}
+.colorblue{
+    color: #0082D1;
+}
+
+.card-activity{
+    display: flex;
+    justify-content: space-between;
+    .rem15{
+        line-height:1.5rem;
+    }
+}
+// .sections {
+//     display: flex; flex-direction: row;justify-content: space-between;align-items:stretch;
+// }
+// .section {
+//     width: 45vw;
+// }
+
+}
