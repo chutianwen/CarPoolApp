@@ -1,0 +1,18 @@
+agm-map, app-user-address-manage{
+  display: inline-block;
+  height:100vh;
+  vertical-align:top
+}
+/*desktop display*/
+agm-map{
+  position: fixed;
+  width:35vw;
+}
+
+app-user-address-manage{
+  top:64px;
+  width:64vw;
+  position:absolute;
+  right:0;
+  padding:1rem;
+}

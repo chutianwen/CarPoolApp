@@ -1,0 +1,28 @@
+
+<agm-map class="mapview"
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="false"
+  [zoomControl]="false">
+
+  <agm-marker
+    *ngFor="let marker of markers"
+    [latitude]="marker.lat"
+    [longitude]="marker.lng">
+
+    <agm-info-window>
+      <strong>{{marker.userName}}</strong><br/>
+      <span>{{marker.role}}</span><br/>
+      <span>{{marker.phone}}</span><br/>
+      <span>{{marker.arrival | date:'shortTime'}}-{{marker.departure | date:'shortTime'}}</span><br/>
+    </agm-info-window>
+
+  </agm-marker>
+</agm-map>
+
+
+<app-user-address-manage class="dataview" (messageEvent)="receiveMessage($event)"></app-user-address-manage>
+
+<!-- <button (click)="showAddresses()" class="button">Show Addresses(DEBUG)</button> -->
+

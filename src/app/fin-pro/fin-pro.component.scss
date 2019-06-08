@@ -1,0 +1,24 @@
+:host{
+// clr-tabs .nav{
+//     justify-content: center!important;
+// }
+.banner>span, .card-block span, .card>span{
+    color:black!important;
+}
+.card-header {
+    display: flex;justify-content: space-between;
+}
+.nav-item:first-child{
+    margin-left:15vw;
+}
+.content{
+    padding:0 2rem; background-color:#eee;margin-top:-1rem;
+}
+.sections{
+    width: 75%;
+}
+.section-head{
+    display: flex;
+    align-items: flex-end;
+}
+}

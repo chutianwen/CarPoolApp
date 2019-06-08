@@ -1,0 +1,274 @@
+<div class="content">
+  <h2>Employment History 
+    <div class="badge">3</div> 
+  </h2>
+    <div class="card" *ngFor="let eh of emphistory">
+      <div class="card-header">
+        <span>{{eh.firm}}&nbsp;
+          <span class="label label-success" *ngIf="eh.status">ACTIVE</span>
+        </span>
+        <span class="colorgrey">{{eh.date}}</span>
+      </div>
+      <div class="card-block">
+        <div class="row">
+          <div class="col-xs">
+            <label for="">LOCATION:</label>&nbsp;<span>{{eh.location}}</span>
+            <span class="label label-light-blue" *ngIf="eh.status">Investment Related</span>
+          </div>
+          <div class="col-xs">
+            <label for="">POSITION:</label>&nbsp;<span>{{eh.position}}</span>
+          </div>
+        </div>
+      </div>
+  </div>
+  <button class="btn btn-link floatlabel">     
+      Show Less<i class="fa fa-chevron-up"></i></button>
+  <div class="section-head">
+    <h2>Other Business &nbsp;&nbsp;</h2>
+    <button class="btn btn-outline">Edit</button>
+  </div>
+  <div class="alert alert-info">
+      <div class="alert-items">
+          <div class="alert-item static">
+              <div class="alert-icon-wrapper">
+                  <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+              </div>
+              <span class="alert-text"><h4> Reporting Requirements</h4>If you are currently engaged in any other business either as a proprietor, 
+                partner, officer, director, employee, trustee, agent or otherwise (excluding non-investment-related
+                 activity that is exclusively charitable, civic, religious or fraternal and is recognized as tax exempt)
+                 , please provide the following details:
+                 <ul class="list">
+                    <li>the name of the other business</li>
+                    <li>the address of the other business</li>
+                </ul>  
+              </span>  
+              <div class="alert-actions">
+                  <a href="..." class="alert-action">Show All</a>
+              </div>
+          </div>
+      </div>
+  </div>
+  <p>
+      I AM A MANAGER OF PTM, LLC WHICH MANAGES A LIMITED LIABILITY COMPANY ASSETS.
+  </p>
+  <h2>Registrations</h2>
+  <div class="card">
+    <div class="card-header">
+        <span>MILLENNIUM BROKERAGE, L.L.C.(47728)&nbsp;
+            <!-- *ngIf="eh.status" -->
+            <span class="label label-info">Broker</span>
+            <span class="label label-info">Investment Adviser</span>
+        </span>
+          <button class="btn btn-link" style="margin-top:-0.25rem">
+            <i class="fa fa-link"></i>
+            View U5</button>
+        <span class="colorgrey">Mar 31, 2003-Aug 8, 2003</span>
+    </div>
+    <div class="card-block">
+      <div class="card-title">Termination</div>
+      <label for="">Reason:&nbsp;</label>
+      <span>Voluntary</span>
+    </div>
+    <div class="card-block">
+      <div class="card-title">Office Locations</div>
+            <label for="">Location:&nbsp;</label>
+            <span>50 TICE BLVD, WOODCLIFF LAKE, NJ 07677
+              <span class="label label-light-blue">Registered Location</span>
+            </span>&nbsp;&nbsp;
+            <label for="">Date:&nbsp;</label>
+            <span>Mar 2003 - Aug 2003</span>
+    </div>
+    <div class="card-block">
+      <div class="card-title">Registrations</div>
+      <table class="table table-noborder">
+          <thead>
+              <tr>
+                  <th class="left">Regulator</th>
+                  <th>Category</th>
+                  <th >Status Date</th>
+                  <th >Status</th>
+                  <th class="right">Date</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let r of registration">
+                  <td class="left">{{r.regulator}}</td>
+                  <td>{{r.category}}</td>
+                  <td >{{r.status_date}}</td>
+                  <td >{{r.status}}</td>
+                  <td class="right">{{r.approval_date}}</td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+  </div><!--End Reg Card-->
+  <button class="btn btn-link floatlabel">     
+      Show 3 More<i class="fa fa-chevron-down"></i></button>
+
+  <h2>Exams History</h2>
+  <div class="card" *ngFor="let e of exam">
+      <div class="card-header">
+        <span>{{e.name}}</span>
+        <span class="exam_status">
+          <span [ngClass]="{ 'colorgreen': e.text === 'Passed', 
+          'colorred': e.text === 'Failed', 'colordblue': e.text === 'Pending' }">
+          <!-- [ngClass]="e.text === 'Passed' ? 'colorgreen' : 'colorred'" 
+          [style.color]="e.text === 'Passed' ? 'green' : 'red'"-->
+            <!-- <fa name="check"> </fa> -->
+            <i class="fa" [ngClass]="{ 'fa-check': e.text === 'Passed', 'fa-times': e.text === 'Failed', 'fa-spinner': e.text === 'Pending' }"></i> {{e.text}}
+          </span>
+          <span class="colorgrey">{{e.date}}</span>
+        </span>
+      </div>
+      <!-- <div class="card-block" *ngFor="let eh of e.history">
+        <label for="">Status:</label>&nbsp;<span>{{eh.status_h}}</span>&nbsp;&nbsp;&nbsp;
+        <label for="">Score:</label>&nbsp;<span>{{eh.score}}</span>&nbsp;&nbsp;&nbsp;
+        <label for="">Type:</label>&nbsp;<span>{{eh.type}}</span>&nbsp;&nbsp;&nbsp;
+        <label for="">Window:</label>&nbsp;<span>{{eh.window}}</span>&nbsp;&nbsp;&nbsp;
+        <label for="">Exam Date</label>&nbsp;<span>{{eh.date}}</span>&nbsp;&nbsp;&nbsp;
+      </div>  -->
+      <div class="card-block" *ngIf="e.history">
+          <table class="table table-noborder">
+              <thead>
+                  <tr>
+                      <th class="left">Status</th>
+                      <th>Score</th>
+                      <th class="right">Type</th>
+                      <th class="left">Window</th>
+                      <th class="right">Exam Date</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let eh of e.history">
+                      <td class="left"><i class="fa" [ngClass]="{ 'fa-check': eh.status_h === 'Passed', 'fa-times': eh.status_h === 'Failed' || eh.status_h === 'Withdraw' }"></i>
+                        {{eh.status_h}}</td>
+                      <td>{{eh.score}}</td>
+                      <td class="right">{{eh.type}}</td>
+                      <td class="left">{{eh.window}}</td>
+                      <td class="right">{{eh.date}}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  <button class="btn btn-link floatlabel">     
+      Show 7 More<i class="fa fa-chevron-down"></i></button>
+  <h2>Exam Waivers</h2>
+  <span class="colorgrey">No Exam Waivers</span>
+
+  <h2>Professional Designations</h2>
+  <div class="alert alert-info">
+      <div class="alert-items">
+          <div class="alert-item static">
+              <div class="alert-icon-wrapper">
+                  <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+              </div>
+              <span class="alert-text">Information on <a href="https://www.iard.com/prof_des">Professional Designations</a>   
+              </span>  
+          </div>
+      </div>
+  </div>
+  <span class="colorgrey">No Professional Designations</span>
+  <h2>Continuing Education</h2>
+  <div class="alert alert-info">
+      <div class="alert-items">
+          <div class="alert-item static">
+              <div class="alert-icon-wrapper">
+                  <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+              </div>
+              <span class="alert-text">To learn more about Continuing Education, please see on 
+                <a href="https://www.finra.org/industry/continuing-education">FINRA’s Continuing Education page</a>   
+              </span>  
+          </div>
+      </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <span>CE-Inactive History</span>
+      <span class="colorgrey">May 20, 2002 - Present</span>
+    </div>
+  </div>
+  <h2>Disclosure Questions</h2>
+  <div class="alert alert-info">
+      <div class="alert-items">
+          <div class="alert-item static">
+              <div class="alert-icon-wrapper">
+                  <clr-icon class="alert-icon" shape="info-circle"></clr-icon>
+              </div>
+              <span class="alert-text">
+                  The disclosure questions and associated responses below reflect the most recent U4 filed by your firm. Refer to 
+                  <a href="https://www.finra.org/file/explanation-terms-crd-forms">FINRA's Explanation of Terms</a>
+                   for clarification of defined terms.</span>  
+          </div>
+      </div>
+  </div>
+  <div class="card firm-card">
+    <div class="card-header">Regulatory Disciplinary Actions</div>
+    <div class="card-block">
+      ...<br/>
+      <b>14D. Has any other Federal regulatory agency or any state regulatory agency or foreign financial 
+          regulatory authority ever:</b><br/>
+      <div>entered an order against you in connection with an investment-related
+         activity?  
+      <label class="colorred floatlabel">Yes</label>
+      </div>
+      ... <br/>
+    </div>
+    <div class="card-header">Financial</div>
+    <div class="card-block">
+      ... <br/>
+      <b>14E. Has any self-regulatory organization or commodities exchange ever:</b><br/>
+      <div>2) found you to have been involved in a violation of its rules (other than a violation designated as 
+          a "minor rule violation" under a plan approved by the U.S. Securities and Exchange Commission)?
+      <label class="colorred floatlabel">Yes</label>
+      </div>
+      <div>(4) disciplined you by expelling or suspending you from membership, barring or suspending your 
+        association with its members, or restricting your activities?          
+      <label class="colorred floatlabel">Yes</label>
+      </div>
+      ... <br/>
+    </div>
+  </div>
+  <button class="btn btn-link floatlabel">     
+      Show All<i class="fa fa-chevron-down"></i></button>
+  <h2>Disclosures</h2>
+  <a href="..." class="label clickable" *ngFor="let d of disclosure" [ngClass]="d.label_class"
+  >{{d.type}}<span class="badge">{{d.count}}</span></a>
+  <div class="card" *ngFor="let dr of disclosure_record"
+  [ngClass]="{ 'card_crt': dr.status === 'current', 'card_prev': dr.status === 'previous'}">
+    <div class="card-header">
+      <span>{{dr.name}}
+      </span>
+      <span *ngIf="dr.status==='previous'" class="label">Archived</span>
+      <label class="colorgrey">Occurrence #{{dr.id}}</label>
+    </div>
+    <div class="card-block">
+        <table class="table table-noborder">
+            <thead>
+                <tr>
+                    <th class="left">Document</th>
+                    <th class="left">Initiated By</th>
+                    <th >Event Date</th>
+                    <th class="left">Reported Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dh of dr.history">
+                    <td class="left">
+                      <button class="btn btn-link btn-inline">
+                        <i class="fa fa-link"></i>
+                        View {{dh.document}}</button>
+                    </td>
+                    <td class="left">{{dh.initiate}}</td>
+                    <td >{{dh.event_date}}</td>
+                    <td class="left">{{dh.report_date}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+  <button class="btn btn-link floatlabel">     
+      Show 16 More<i class="fa fa-chevron-down"></i></button>
+
+  <div style="display:block;height:4rem;"></div>
+</div><!--End content-->

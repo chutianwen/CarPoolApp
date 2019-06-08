@@ -1,0 +1,38 @@
+@import "../fin-pro.component.scss";
+
+:host{
+    background:#eee;
+    .card{
+        margin-top: 0.5rem;box-shadow: -0.125rem 0 0 0 #d7d7d7;
+        .card-block{background:#f9f9f9;}
+        .table{
+            margin-top:0;
+        }
+    }
+    .card:hover{
+        box-shadow: -0.125rem 0 0 0 #0082D1; background:#fefefe;
+    }
+    .colorgrey{
+        color:grey;font-size:0.6rem;
+    }
+    .colorgreen{color:#9EC405;}
+    .colorred{color:#FB483D;}
+    .colordblue{color:#233E66;}
+    .floatlabel{display:inline-block;float:right;font-weight:700;}
+    .exam_status{
+        display: inline-flex;
+        width: 15rem;
+        justify-content: space-between;
+    }
+    .label-danger{
+        .badge{
+            background-color: #FB483D;
+        }
+    }
+    .btn-inline{
+        margin: -1rem 0;
+    }
+    .card.card_prev {
+        background: #efefef;
+    }    
+}
